@@ -1,0 +1,72 @@
+<script src="http://koda.nu/simple.js">
+  
+    var zombies = [];
+    
+    var i = 0
+
+
+    while (i < 20)
+      
+    {
+     zombies.push({x: random(totalWidth),
+                  y: random(totalHeight),
+                  speed: random(7, 10)});
+        i += 1;
+    }
+    
+    hideMouse();
+ 
+    function update()
+    {
+      clearScreen();
+      fill("red");
+      
+    
+      rectangle(5, 5, totalWidth-10, totalHeight-10, "https://se-flow-cdn.clio.me/51eb3950c4988a3e96e951ad81ea59d90fcae00e/b7b42636f444fd61805cdd396566de92ccdcede7.png");
+ 
+      var i = 0;
+     
+      while (i < 20)
+      {
+        var zombie = zombies[i];
+ 
+        
+        picture(mouse.x , mouse.y, "http://www.spelprogrammering.nu/bilder/immortal.png"); // hittar inte
+ 
+        picture(zombie.x ,zombie.y , "http://www.spelprogrammering.nu/bilder/zombie.png");
+    
+    var y = zombie.speed*(mouse.y - zombie.y)/distance(zombie, mouse); 
+       var x = zombie.speed*(mouse.x - zombie.x)/distance(zombie, mouse); 
+        
+        zombie.x += x;
+        zombie.y += y;
+       
+ 
+
+ 
+ 
+ 
+ 
+        
+          if (distance(mouse, zombie) < 5)
+        {   
+            stopUpdate();
+            showMouse();
+            text(200, 300,150,"Game over!", "blue");
+        
+        } 
+        
+        if(getPixel(mouse.x,mouse.y).black != 1) // Fungerar inte 
+        {
+          stopUpdate();
+          text(100, 100, 100, "Error 404", "blue");
+        }
+         i += 1;
+        
+          
+ 
+        
+      }
+    }
+  </script>
+
